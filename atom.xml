@@ -3,27 +3,35 @@ layout: nil
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
- 
- <title>Alex Rothenberg</title>
- <link href="http://www.alexrothenberg.com/atom.xml" rel="self"/>
- <link href="http://www.alexrothenberg.com/" rel="alternate" type="text/html" />
- <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>http://www.alexrothenberg.com/</id>
- <author>
-   <name>Alex Rothenberg</name>
-   <email>alex@alexrothenberg.com</email>
- </author>
+  <title>metajack.im</title>
+  <link rel="alternate" type="text/html" href="http://metajack.im/" />
+  <link rel="self" type="application/atom+xml" href="http://metajack.im/atom.xml" />
+  <id>http://metajack.im/atom.xml</id>
+  <updated>{{ site.time | date_to_utc | date:"%Y-%m-%dT%H:%M:%SZ" }}</updated>
+  <subtitle>a blog about startups and code</subtitle>
 
- {% for post in site.posts %}
- <entry>
-   <title>{{ post.title }}</title>
-   <link href="http://www.alexrothenberg.com{{ post.url }}"/>
-   <published>{{ post.date | date_to_xmlschema }}</published>
-   <updated>{{ post.date | date_to_xmlschema }}</updated>
-   <id>http://www.alexrothenberg.com{{ post.id }}</id>
-   <category>{{post.category}}</category>
-   <content type="html">{{ post.content | xml_escape }}</content>
- </entry>
- {% endfor %}
- 
+  {% for post in site.posts limit:15 %}
+  {% if post.id == '/2008/12/23/some-predictions-for-2009/' %}
+  {% assign last_dash_index = forloop.index0 %}
+  {% endif %}
+  
+  <entry>
+    <title>{{ post.title }}</title>
+    <link rel='alternate' type='text/html' href='{{ post.url }}' />
+    <id>tag:metajack.im:{% if forloop.index0 > last_dash_index %}{{ post.id | replace:"-","_" }}{% else %}{{ post.id }}{% endif %}</id>
+    <updated>{{ post.date | date.getutc:"%Y-%m-%dT%H:%M:00Z" }}</updated>
+    <updated></updated>
+
+    <author>
+      <name>Jack Moffitt</name>
+      <uri>http://metajack.im</uri>
+      <email>jack@metajack.im</email>
+    </author>
+
+    <summary>{{ post.content | html_truncatewords:50 }}</summary>
+    <content type='html' xml:lang='en' xml:base='http://metajack.im/'>
+      <![CDATA[{{ post.content }}{{ post.extended }}]]>
+    </content>
+  </entry>
+  {% endfor %}
 </feed>
