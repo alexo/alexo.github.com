@@ -1,0 +1,87 @@
+--- 
+name: using-scopes-in-autocomplete-plugin
+layout: post
+title: Using scopes in auto_complete plugin
+time: 2009-03-18 09:05:00 -04:00
+---
+
+<p>
+  My colleague <a href="http://patshaughnessy.net">Pat Shaughnessy</a> has spent a lot of time recently enhancing the auto_complete plugin. I suggest you read his blog posts and check out his <a href="http://github.com/patshaughnessy/auto_complete">fork of auto_complete on github</a> to see the details.<br>
+  <br>
+  I was reading his latest change to allow <a href="http://patshaughnessy.net/2009/3/14/filtering-auto_complete-pick-lists">filtering of auto complete picklists</a> and really like what he did but thought there was one thing that didn't quite feel right - the fact that you have to mix the application logic to filter the list with the plugin logic to find the list in the block in your controller.<br>
+  <br>
+  Here's the code Pat wrote in his controller and what I'd like to avoid is having to re-implement the "LOWER(tasks.name) LIKE ?" portion that's already implemented in the filtered_auto_complete_for method of autocomplete.rb in the plugin.<br>
+  <br>
+</p>
+
+{% highlight ruby %}
+# For task name auto complete, only display tasks
+# that belong to the given project: 
+filtered_auto_complete_for :task, :name do | find_options, params|
+  find_options.merge!(
+    {
+      :include => :project,
+      :conditions => [ "LOWER(tasks.name) LIKE ? AND projects.name = ?",
+                       '%' + params['task']['name'].downcase + '%',
+                       params['project'] ],
+      :order => "tasks.name ASC"
+    }
+  )
+end
+{% endhighlight %}
+
+<p>
+  <br>
+  <br>
+  <br>
+  I'd like to propose a slight modification so the block you write as part of your application can focus just on the filtering and leave the responsibility for the search with plugin. I'm also proposing we use scopes (which I don't think were around when the original auto_complete plugin was written) to filter and sort the list the plugin. Here is the code I'd like to write in my application.<br>
+  <br>
+</p>
+
+{% highlight ruby %}
+class ProjectController < ApplicationController
+  # For task name auto complete, only display tasks
+  # that belong to the given project: 
+  filtered_auto_complete_for :task, :name do | list, params |
+    list.by_project(params['project']['id'])
+  end
+end
+
+class Project < ActiveRecord::Base
+  named_scope :by_project, 
+              lambda {|project_id| {:conditions => {:project_id => project_id} } }
+end
+{% endhighlight %}
+
+<p>
+  <br>
+  <br>
+  We can do this with a simple modification of the plugin implementation of filtered_auto_complete_for<br>
+  <br>
+</p>
+
+{% highlight ruby %}
+def filtered_auto_complete_for(object, method)
+  define_method("auto_complete_for_#{object}_#{method}") do
+    find_options = { 
+      :conditions => [ "LOWER(#{method}) LIKE ?", '%' +
+        params[object][method].downcase + '%' ], 
+      :order => "#{method} ASC",
+      :limit => 10 }
+    @items = object.to_s.camelize.constantize.scoped(find_options)
+    @items = yield(@items, params) if block_given?
+
+    render :inline => "<%= auto_complete_result @items, '#{method}' %>"
+  end
+end
+{% endhighlight %}
+
+<p>
+  <br>
+  <br>
+  Originally, it used passed the find_options hash to the block and then executed the search in one step as "@items = object.to_s.camelize.constantize.find(:all, find_options)". My change is to rely on ActiveRecord proxy objects to chain criteria together leaving the block independent of the criteria here in the plugin. The best part is you don't have to worry about performance as ActiveRecord will intelligently combine the criteria into a single SQL request. For example searching for tasks that start with 'tas' within project #7<br>
+  <br>
+</p>
+<pre class="old_code">
+<br> User Load (1.2ms)   SELECT * FROM `tasks` WHERE ((`tasks`.`project_id` = '7') AND (LOWER(name) LIKE '%tas%'))  ORDER BY name ASC LIMIT 10<br>
+</pre>

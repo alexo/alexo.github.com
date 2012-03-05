@@ -1,0 +1,172 @@
+--- 
+name: blog-aggregator-wayweworkit
+layout: post
+title: I built a blog aggregator - waywework.it
+time: 2008-11-09 10:33:00.005000 -05:00
+---
+
+<p>
+  I've been spending some time recently putting together a blog aggregator site for some of the folks I work with. Its now up and running at <a href="http://waywework.it">http://waywework.it</a>. I hope this will be an interesting place to share our public community and as one of my colleagues said "this keeps my Google Reader much neater".<br>
+  <br>
+  Today I'd like to talk about the code running this site which is posted and available on github at <a href="http://github.com/alexrothenberg/waywework">http://github.com/alexrothenberg/waywework</a>.<br>
+  <br>
+  I started thinking I would use an existing aggregator site and just apply my skin but when I did a quick search on github I most of the hard work existed in atom and rss gems and plugins and I wanted to take advantage of the just released Rails 2.2 so I decided to build my own. This turned out to be not too much work. Today I'd like to talk about how I put this together.<br>
+  <br>
+  First I created my project with some scaffolding for feeds which would have_many posts<br>
+</p>
+
+{% highlight ruby %}
+class Feed < ActiveRecord::Base
+  has_many :posts, :dependent => :delete_all
+end
+
+class Post < ActiveRecord::Base
+  belongs_to :feed
+end
+{% endhighlight %}
+
+<p>
+  <br>
+  <br>
+  I soon found the <a href="http://split-s.blogspot.com/2006/04/atom-10-parser-for-ruby.html">atom gem</a> and <a href="http://www.rubyrss.com/">rss parser</a> built into ruby. Using them was a piece of cake as all I had to do was create a method to call each one in my Feed model<br>
+</p>
+
+{% highlight ruby %}
+class Feed < ActiveRecord::Base
+  def get_posts_from_atom atom_xml
+    feed = Atom::Feed.new(atom_xml)
+    feed.entries.each { |entry|
+      link = entry.links.detect {|l| l.rel == 'alternate'}
+      create_post(:contents=>entry.content.value, :url=>link.href, :title=>entry.title, 
+                  :published=>entry.published.to_s(:db), :updated=>entry.updated.to_s(:db))
+    }
+    return !feed.entries.blank?
+  end  
+  
+  def get_posts_from_rss rss_xml
+    rss = RSS::Parser.parse(rss_xml, false)
+    rss.items.each { |entry|
+      create_post(:contents=>entry.description, :url=>entry.link, :title=>entry.title, 
+                  :published=>entry.date.to_formatted_s(:db), :updated=>entry.date.to_formatted_s(:db))
+    }
+    return !rss.items.blank?
+  end
+end
+{% endhighlight %}
+
+<p>
+  <br>
+  <br>
+  Of course I had to create the glue wrapping it all together. A rake task to be call on a schedule<br>
+</p>
+
+{% highlight ruby %}
+namespace :feeds do
+  desc "Load the feeds"
+  task :populate => :environment do
+    feeds = Feed.all
+    feeds.each do |feed|
+      feed.get_latest
+    end
+  end
+end
+{% endhighlight %}
+
+<p>
+  <br>
+  <br>
+  and the logic to load the feed, parse it and update the posts.<br>
+</p>
+
+{% highlight ruby %}
+class Feed < ActiveRecord::Base
+  def get_latest
+    puts "getting feed for #{name}"
+    xml = get_feed
+    got_atom_posts = get_posts_from_atom xml
+    get_posts_from_rss xml unless got_atom_posts
+  end
+
+  def get_feed
+    uri = URI.parse(feed_url)
+    uri.read
+  end
+  
+  def create_post params
+    params.merge!(:feed_id=>id) 
+    existing_post = Post.find_by_url(params[:url])
+    if existing_post
+      existing_post.update_attributes(params)
+    else
+      Post.create(params) 
+    end
+  end
+end
+{% endhighlight %}
+
+<p>
+  <br>
+  <br>
+  The next step was to publish an atom feed of my site. Again there was a plugin <a href="http://dev.rubyonrails.org/browser/plugins/atom_feed_helper">atom_feed_helper</a>waiting to help me. I installed the plugin and created a view builder<br>
+</p>
+
+{% highlight ruby %}
+atom_feed(:url => atom_feed_url) do |feed|
+  feed.title("WayWeWork")
+  feed.updated(@posts.first.published)
+
+  for post in @posts
+    feed.entry(post, :url=>post.url, :published=>post.published, :updated=>post.updated) do |entry|
+      entry.title("#{post.feed.author}: #{post.title}")
+      entry.content(post.contents, :type => 'html')
+    end
+  end
+end
+{% endhighlight %}
+
+<p>
+  <br>
+  This was all so easy I had hardly done anything other than glue these plugins together. Now I finished up with a few bells and whistles.<br>
+  <br>
+  I added a who's talking and archive by date section to my homepage that I called from my controller like this<br>
+</p>
+
+{% highlight ruby %}
+class PostsController < ApplicationController
+  @active_feeds = Feed.by_author
+  @activity_by_date = Post.activity_by_date
+end
+{% endhighlight %}
+
+<p>
+  <br>
+  <br>
+  I added security to restrict who can administer feeds<br>
+</p>
+
+{% highlight ruby %}
+class FeedsController < ApplicationController
+  before_filter :authenticate
+
+protected
+  def authenticate
+     authenticate_or_request_with_http_basic do | user_name, password|
+       username = YAML::load_file(File.join(RAILS_ROOT, %w[config password.yml]))['username']
+       pwd = YAML::load_file(File.join(RAILS_ROOT, %w[config password.yml]))['password']
+      user_name == username && password == pwd
+    end
+  end
+end
+{% endhighlight %}
+
+<p>
+  <br>
+  <br>
+  For the UI I am somewhat graphically challenged so got some help. For this github was very cool as I could add <a href="http://github.com/lessallan">lessallan</a> as a collaborator and he could check in his changes so they just appeared!<br>
+  <br>
+  Finally a little work with capistrano (mostly just creating a <a href="http://github.com/alexrothenberg/waywework/tree/master/Capfile">Capfile</a>) and I could deploy!<br>
+  <br>
+  Overall I spent a few days and now have a site that does exactly what I want. Where most of the code I wrote is specific to my site and the general purpose plumbing was downloaded. I'm very pleased with the availability of plugins and gems and how easy it was to collaborate using github!<br>
+  <br>
+  Now I just hope others find the site interesting to use!
+</p>
