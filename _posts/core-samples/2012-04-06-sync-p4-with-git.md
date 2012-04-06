@@ -1,3 +1,10 @@
+---
+layout: post
+category : lessons
+tags : [tutorial, appengine, deploy]
+---
+{% include JB/setup %}
+
 If you want to automate p4 to git synchronization, you can use a script which performs all the hard work for you. The idea behind it is simple:
 
 # In git repostory create a branch called p4 (for holding exact state of sources in perforce)
