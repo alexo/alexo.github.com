@@ -1,7 +1,7 @@
 ---
 layout: post
 category : lessons
-tags : [tutorial, appengine, deploy]
+tags : [tutorial, git]
 ---
 {% include JB/setup %}
 
