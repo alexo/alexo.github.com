@@ -5,13 +5,16 @@ tags : [tutorial, appengine, deploy]
 ---
 {% include JB/setup %}
 
+### Sync Perforce with Git
+
 If you want to automate p4 to git synchronization, you can use a script which performs all the hard work for you. The idea behind it is simple:
 
-# In git repostory create a branch called p4 (for holding exact state of sources in perforce)
-# Do all your work in a separate topic branch
-# When you are ready to sync, update the perforce with latest changes and launch the script.
-# The script will copy all content from perforce to git location (on p4 branch) and will commit them.
+- In git repostory create a branch called p4 (for holding exact state of sources in perforce)
+- Do all your work in a separate topic branch
+- When you are ready to sync, update the perforce with latest changes and launch the script.
+- The script will copy all content from perforce to git location (on p4 branch) and will commit them.
 
+### Script samples
 
 This is a sample bash script (for linux) used to sync a perforce project repository with git. 
 		
