@@ -51,6 +51,9 @@ owner:
   google:
     plus: +ObjeleanAlex1982
     analytics:
+      provider : google
+      google : 
+        tracking_id : 'UA-1806697-9'
     verify:
     ad-client:
     ad-slot:
