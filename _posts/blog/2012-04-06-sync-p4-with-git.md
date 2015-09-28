@@ -7,7 +7,7 @@ excerpt:
 tags : [lesson]
 image:
   feature:
-date: 2015-09-25T15:39:55-04:00
+date: 2012-04-06T15:39:55-04:00
 ---
 
 If you want to automate p4 to git synchronization, you can use a script which performs all the hard work for you. The idea behind it is simple:
@@ -21,54 +21,57 @@ If you want to automate p4 to git synchronization, you can use a script which pe
 
 This is a sample bash script (for linux) used to sync a perforce project repository with git. 
 		
+{% highlight bash %}
+#!/bin/bash
+@echo off 
+local _p4
+_p4=/path/to/perforce/project		
+local _git
+_git=/path/to/git/project
 
-		#!/bin/bash
-		@echo off 
-		local _p4
-		_p4=/path/to/perforce/project		
-		local _git
-		_git=/path/to/git/project
+cd $_git
+echo "Switching to branch p4"
+git checkout p4
 
-		cd $_git
-		echo "Switching to branch p4"
-		git checkout p4
+# Remove all but .git and .
+ls -a |grep -v . | xargs rm -rf 
 
-		# Remove all but .git and .
-		ls -a |grep -v . | xargs rm -rf 
+echo "DELETE...[OK]"
 
-		echo "DELETE...[OK]"
+#Copy P4 -> GIT
+cp -rf $_p4/* $_git/
 
-		#Copy P4 -> GIT
-		cp -rf $_p4/* $_git/
+echo "COPY...[OK]"
 
-		echo "COPY...[OK]"
+git add .
+git status
+git commit -am "sync p4->git"
 
-		git add .
-		git status
-		git commit -am "sync p4->git"
-
-		echo "SYNC...[OK]"
+echo "SYNC...[OK]"
+{% endhighlight %}		
 
 
 Below is a bat script (for windows):
 
-		@echo off 
-		SETLOCAL 
-		SET _p4=D:/path/to/perforce/project
-		SETLOCAL 
-		SET _git=D:/path/to/git/project
+{% highlight bash %}
+@echo off 
+SETLOCAL 
+SET _p4=D:/path/to/perforce/project
+SETLOCAL 
+SET _git=D:/path/to/git/project
 
-		cd %_git%
-		rm -rf %_git%/* 
+cd %_git%
+rm -rf %_git%/* 
 
-		echo "DELETE...[OK]"
+echo "DELETE...[OK]"
 
-		cp -rf %_p4%/* .
+cp -rf %_p4%/* .
 
-		echo "COPY...[OK]"
+echo "COPY...[OK]"
 
-		git add .
-		git status
-		git commit -am "sync p4->git"
+git add .
+git status
+git commit -am "sync p4->git"
 
-		echo "SYNC...[OK]"
+echo "SYNC...[OK]"
+{% endhighlight %}
