@@ -80,7 +80,7 @@ Unitatea de baza de stocare in Couchbase Server il reprezinta documentele. De ce
 
 Continutul documentelor poate fi si in alt format decat JSON (cum ar fi date binare), dar avantajele folosirii formatului JSON sunt posibilitatea de a indexa si a interoga datele. Couchbase ofera un motor de cautare bazat pe JavaScript ce permite cautarea datelor bazate pe valorile campurilor din documente.
 
-[![Couchbase Data](couchbase_data.jpg)](couchbase_data.jpg)
+![Couchbase Data](/images/couchbase/couchbase_data.jpg)
 
 ### Data Buckets
 Datele sunt stocate in cluster-ul Couchbase folosind asa numitele Data Buckets. Buckets-urile sunt containere virtuale izolate, ce formeaza un group logic de date in cadrul unui cluster. Un Bucket este echivalentul unei baze de date. Bucket-urile ofera un mecanism securizat de organizare, configurare (memorie, numarul de replici, etc) si analiza al datelor stocate. 
@@ -104,7 +104,7 @@ Toate documentele contin metadate. Metadatale sunt stocate impreuna cu documente
 ### Couchbase SDK
 Cunoscut si sub numele librarii client, acestea reprezinta unelte de dezvoltare pentru diverse limbaje de programare. Sunt responsabile de comunicarea cu un Couchbase Server si ofera interfete specifice limbajelor de programare necesare pentru a efectua operatii pe baza de date. Librarile client stiu sa citeasca si sa scrie datele direct de pe nodul primar. Odata cu schimbarea topologiei, librariile client redirecteaza solicitarile ce urmeaza catre noile noduri gazda.
 
-[![Couchbase SDK](basic_architecture.jpg)](basic_architecture.jpg)
+![Basic Architecture](/images/couchbase/basic_architecture.jpg)
 
 ## Arhitectura
 
@@ -114,13 +114,13 @@ Intr-o configurare tipica, o baza de date Couchbase este instalata intr-un clust
 
 Pentru a facilita scalarea pe orizontala, Couchbase foloseste partitionarea bazata pe un hash care asigura distributia uniforma a datelor pe toate nodurile. Sistemul defineste 1024 de partitii (numar fix) si odata ce pentru cheia unui document se calculeaza un hash asociat unei partitii - aceasta partitie devine gazda documentului. Fiecare partitie are asignat un nod din cluster. Daca topologia cluster-ului se schimba (un nod adaugat sau eliminat), sistemul se rebalanseaza prin migrarea partitiilor de la un nod la altul.   
 
-[![vBuckets](clusterMap.png)](clusterMap.png)
+![vBuckets](/images/couchbase/clusterMap.png)
 
 Nu exista o singura veriga slaba in sistem, deoarece toate nodurile dintr-un cluster sunt egale. Fiecare nod fiind responsabil doar de un set de date care i-au fost asignate. Toate nodurile dintr-un cluster ruleaza doua procese primare: data manager si cluster manager. Data manager-ul este responsabil de administrarea datelor din partitiile acelui nod, in timp ce cluster manager se ocupa de operatiile de comunicare intre nodurile cluster-ului.
 
 Rezilienta sistemului este posibila datorita replicarii de documente. Procesul cluster manager coordoneaza comunicarea dintre datele replicate cu alte noduri din cluster, iar procesul data manager supervizeaza replicile ce sunt asignate de catre cluster catre nodul local. In mod natural, partitiile replicate sunt distribuite pe mai multe noduri, astfel incat sa se evite situatia in care partitiile replicate sunt stocate pe acelasi nod ca cele active.
 
-[![Resilience](resilient.jpg)](resilient.jpg)
+![Resilience](/images/couchbase/resilient.jpg)
 
 Documentele sunt situate in Bucket-uri si documentele dintr-un Bucket sunt izolate de documentele din alte Bucket-uri din perspectiva operatiilor de cautare si interogare. Cand se creaza un nou Bucket, este posibila configurarea numarului de replici (maxim trei) pentru acest Bucket. In cazul indisponibilitatii unui nod (server crash), sistemul va detecta problema, va localiza replicile documentelor ce au fost plasate in acel nod si le va promova la statusul de activ. Sistemul mentine o mapare de cluster care defineste topologia cluster-ului, iar acesta mapare este modificata la fiecare problema aparuta ce afecteaza nodurile din cluster.
 
@@ -143,19 +143,19 @@ Performanta trebuie masurata folosind scenariile similare unui mediu din product
 
 Unul din testele de performanta de referinta pentru compararea tehnologiilor NoSQL este YCSB (Yahoo Cloud Serving Benchmark). Scopul acestuia este sa se focuseze pe testarea diverselor tipuri de baze de date si analiza performantei. YCSB este open-source, extensibil, are un numar mare de conectori pentru diverse tipuri de tehnologii, este reproductibil si compara latenta vs randament (throughput).
 
-[![Reads P99](benchmarking-couchbase-reads.jpg)](benchmarking-couchbase-reads.jpg)
-[![Writes P99](benchmarking-couchbase-writes.jpg)](benchmarking-couchbase-reads.jpg)
+![Reads P99](/images/couchbase/benchmarking-couchbase-reads.jpg)
+![Writes P99](/images/couchbase/benchmarking-couchbase-writes.jpg)
 
 Rezultatele au aratat ca tehnologia Couchbase ofera latenta cea mai mica si throughput-ul cu valori mai mari prin comparatie cu tehnologiile concurente.
 
 ### Performanta si consistenta
 Pentru asigurarea consistentei, este importanta executia operatiilor de citire/scriere pe nodurile primare. Solutiile NoSQL ce se bazeaza pe un singur nod primar sunt limitate din punct de vedere al performantei, deoarece clientii nu pot folosi la capacitate maxima celelalte noduri aflate in cluster. Prima alternativa este de a efectua operatia de citire pe toate nodurile (atat primare cat si secundare). In acest caz, performanta de citire este foarte buna, insa nu mai este garantata consistenta pentru ca replicarea datelor este asincrona. A doua alternativa este replicarea sincrona care asigura consistenta datelor, insa contribuie la degradarea performantei.
 
-[![Single Primary Node](mongodb_consistent.png)](mongodb_consistent.png)
+![Single Primary Node](/images/couchbase/mongodb_consistent.png)
 
 Prin comparatie cu prima abordare, Server-ul Couchbase asigura consistenta datelor. Acesta, de asemenea executa operatiile de citire doar pe nodurile primare pentru asigurarea consistentei. Singura diferenta este ca toate nodurile sunt utilizate la capacitatea maxima, pentru ca fiecare nod este primar pentru un subset da partitii de date. 
 
-[![Multiple Primary Nodes](couchbase_consistent.png)](couchbase_consistent.png)
+![Multiple Primary Nodes](/images/couchbase/couchbase_consistent.png)
 
 Toate operatiile de citire/scriere sunt executate pe nodurile primare.
 
@@ -163,7 +163,7 @@ Toate operatiile de citire/scriere sunt executate pe nodurile primare.
 ## Monitorizare
 Couchbase Server include un set complet de statistici si informatii de monitorizare. Statisticile sunt oferite prin intermediul interfetelor de administrare. Una dintre ele este consola de administrare web, care include grafice in timp real ale datelor de performanta.
 
-[![Monitor Graph](monitor_graph.png)](monitor_graph.png)
+![Monitor Graph](/images/couchbase/monitor_graph.png)
 
 Statisticile sunt impartite in mai multe grupuri, permitand identificarea diferitelor tipuri de probleme:
 

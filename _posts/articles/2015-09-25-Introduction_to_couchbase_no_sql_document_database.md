@@ -78,7 +78,7 @@ The primary unit of data storage in Couchbase Server is a JSON document, which m
 
 The binary data can be stored in documents as well, but using JSON structure allows the data to be indexed and queried using views. Couchbase Server provides a JavaScript-based query engine to find records based on field values. 
 
-![Couchbase Data]({{ site.url }}/images/couchbase/couchbase_data.jpg)
+![Couchbase Data](/images/couchbase/couchbase_data.jpg)
 
 
 ### Data Buckets
@@ -107,7 +107,7 @@ Couchbase SDKs (aka client libraries) are the language-specific SDKs provided by
 
 All Couchbase SDKs automatically read and write data to the right node in a cluster. If database topology changes, the SDK responds automatically and correctly distributes read/write requests to the right cluster nodes. Similarly, if your cluster experiences server failure, SDKs will automatically direct requests to still-functioning nodes.
 
-![Basic Architecture]({{ site.url }}/images/couchbase/basic_architecture.jpg)
+![Basic Architecture](/images/couchbase/basic_architecture.jpg)
 
 ## Architectural Overview
 
@@ -117,13 +117,13 @@ In a typical setting, a Couchbase DB resides in a server clusters involving mult
 
 To facilitate horizontal scaling, Couchbase uses hash sharding, which ensures that data is distributed uniformly across all nodes. The system defines 1,024 partitions (a fixed number), and once a document's key is hashed into a specific partition, that's where the document lives. In Couchbase Server, the key used for sharding is the document ID, a unique identifier automatically generated and attached to each document. Each partition is assigned to a specific node in the cluster. If nodes are added or removed, the system rebalances itself by migrating partitions from one node to another.
 
-![vBuckets]({{ site.url }}/images/couchbase/clusterMap.png)
+![vBuckets](/images/couchbase/clusterMap.png)
 
 There is no single point of failure in a Couchbase system. All partition servers in a Couchbase cluster are equal, with each responsible for only that portion of the data that was assigned to it. Each server in a cluster runs two primary processes: a data manager and a cluster manager. The data manager handles the actual data in the partition, while the cluster manager deals primarily with intranode operations.
 
 System resilience is enhanced by document replication. The cluster manager process coordinates the communication of replication data with remote nodes, and the data manager process supervise the replica data being assigned by cluster to the local node. Naturally, replica partitions are distributed throughout the cluster so that the replica copy of a partition is never on the same physical server as the active partition.
 
-![Resilience]({{ site.url }}/images/couchbase/resilient.jpg)
+![Resilience](/images/couchbase/resilient.jpg)
 
 Documents are placed into buckets, and documents in one bucket are isolated from documents in other buckets from the perspective of indexing and querying operations. When a new bucket is created, it is possible to configure the number of replicas (up to three) for that bucket. If a server crashes, the system will detect the crash, locate the replicas of the documents that lived on the crashed system, and promote them to active status. The system maintains a cluster map, which defines the topology of the cluster, and this is updated in response to the crash.
 
