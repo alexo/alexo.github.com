@@ -35,21 +35,21 @@ exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.
 # Site owner
 owner:
   name: Alex Objelean
-  avatar: bio-photo.jpg
+  avatar: http://1.gravatar.com/avatar/909892a9a8f332145fc01b6547cd3a3a?size=200px
   email: alex.objelean@gmail.com
-  disqus-shortname:
-  twitter: alex.objelean
-  facebook: #username
-  github: #username
-  stackexchange: #http://stackoverflow.com/users/123456/username
-  linkedin: alex.objelean
-  instagram: #username
-  flickr: #username
+  disqus-shortname: Alex Objelean
+  twitter: alexobjelean
+  facebook: alex.objelean
+  github: alexo
+  stackexchange: http://stackoverflow.com/users/859314/alex-objelean
+  linkedin: alexobjelean
+  instagram: alexobjelean
+  flickr: alex_objelean
   tumblr: #username
   pinterest: #username
   weibo: #userid
   google:
-    plus: #username
+    plus: +ObjeleanAlex1982
     analytics:
     verify:
     ad-client:
