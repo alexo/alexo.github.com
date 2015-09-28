@@ -2,10 +2,11 @@
 layout: post
 title: "TSM Article Presentation"
 excerpt: "Introduction to Couchbase - NoSQL Document Database"
-categories: articles
+categories: blog
 tags: [presentation, video, technical, couchbase]
 comments: false
 share: true
+date: 2015-05-28T15:39:55-04:00
 ---
 
 A new version [number 35](http://www.todaysoftmag.com/issue/35) of Today Software Magazine was published on May (2015), containing my article called *Introduction to Couchbase - NoSQL Document Database*. The author of each article kept a short presentation. Below is mine (in romanian):

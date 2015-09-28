@@ -9,8 +9,8 @@ image:
   feature: so-simple-sample-image-1.jpg
   credit: WeGraphics
   creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
-comments: true
-share: true
+comments: false
+share: false
 ---
 
 # Introducere in Couchbase - solutie NoSQL bazata pe Documente 
