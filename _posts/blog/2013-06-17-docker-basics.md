@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Docker basics"
+excerpt: Most useful Docker commands
 modified:
 categories: blog
-excerpt:
 tags : [docker]
 image:
   feature:

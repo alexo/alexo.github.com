@@ -4,6 +4,7 @@ title: "Sync Perforce with Git"
 modified:
 categories: blog
 excerpt:
+comments: true
 tags : [lesson]
 image:
   feature:

@@ -5,6 +5,7 @@ modified:
 categories: blog
 excerpt:
 tags : [test, spring, java]
+comments: true
 image:
   feature:
 date: 2013-02-22T15:39:55-04:00

@@ -5,6 +5,7 @@ modified:
 categories: blog
 excerpt:
 tags : [linux, tips]
+comments: true
 image:
   feature:
 date: 2013-06-17T15:39:55-04:00
