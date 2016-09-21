@@ -3,7 +3,7 @@ layout: post
 title: "Sync Perforce with Git"
 modified:
 categories: blog
-excerpt:
+excerpt: "How to sync perforce with git"
 comments: true
 tags : [lesson]
 image:

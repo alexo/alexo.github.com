@@ -3,7 +3,7 @@ layout: post
 title: "Create Custom Service in Ubuntu"
 modified:
 categories: blog
-excerpt:
+excerpt: "How to create a customer service in Ubuntu"
 tags : [linux, tips]
 comments: true
 image:

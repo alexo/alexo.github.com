@@ -3,7 +3,7 @@ layout: post
 title: "Deploying application with GAE"
 modified:
 categories: blog
-excerpt:
+excerpt: "How to deploy an application on Google App Engine (GAE)"
 tags : [tutorial, appengine, deploy]
 comments: true
 image:

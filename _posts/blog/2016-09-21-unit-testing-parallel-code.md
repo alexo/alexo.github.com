@@ -3,7 +3,7 @@ layout: post
 title: "Testing parallel execution with java 8"
 modified:
 categories: blog
-excerpt:
+excerpt: "Testing parallel execution with java 8"
 tags : [test, java]
 comments: true
 image:

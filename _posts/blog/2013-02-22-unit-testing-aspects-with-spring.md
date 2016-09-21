@@ -3,7 +3,7 @@ layout: post
 title: "Unit testing aspects with spring"
 modified:
 categories: blog
-excerpt:
+excerpt: "How to unit test aspects with spring"
 tags : [test, spring, java]
 comments: true
 image:
