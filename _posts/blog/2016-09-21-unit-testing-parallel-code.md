@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Testing parallel execution with java 8"
+title: "Testing concurrent code execution"
 modified:
 categories: blog
-excerpt: "Testing parallel execution with java 8"
+excerpt: "How to easily test concurrent code execution with java 8"
 tags : [test, java]
 comments: true
 image:
