@@ -11,8 +11,9 @@ image:
 date: 2016-09-21T17:00:00-04:00
 ---
 
+Running good tests is hard. Running tests which test various scenarios in concurrent environment is even harder. 
 
-Running good tests is hard. Running tests which test various scenarios in concurrent environment is even harder. One of my most recent use-cases was to write an integration test which proves that concurrent update of the same entity in a persistent storage throws an exception. There are dozens of other use-cases which require similar test to be written. 
+One of my most recent use-cases was to write an integration test which proves that concurrent update of the same entity in a persistent storage throws an exception. There are dozens of other use-cases which require similar test to be written. 
 
 The first attempt to write this kind of code is to explicitly create an ExecutorService and submit threads which execute the method being tested. But there was a lot of boilerplate code which pollutes the test. Isn't there a more elegant solution?
 
