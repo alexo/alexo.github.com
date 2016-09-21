@@ -40,7 +40,7 @@ public class TestUtils {
 }
 {% endhighlight %}
 
-The above code allows to easily test any kinf of logic in parallel using CompletableFuture & Stream utilities. Using the above utility looks pretty concise and clear:
+The above code allows to easily test any kind of logic in parallel using CompletableFuture & Stream utilities. Using the above utility looks pretty concise and clear:
 
 {% highlight java %}
 public class MyTest {
@@ -57,7 +57,7 @@ public class MyTest {
 }
 {% endhighlight %}
 
-This test assert that a hypotetical userService throws the CASMismatchException when the update operation is performed concurrently. 
+This test assert that a hypothetical userService throws the CASMismatchException when the update operation is performed concurrently. 
 
 
 
