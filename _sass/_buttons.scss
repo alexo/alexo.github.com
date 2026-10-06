@@ -1,39 +1,17 @@
-/* ==========================================================================
-   Buttons
-   ========================================================================== */
-
-/*
-   Default button
-   ========================================================================== */
-
 .btn {
   display: inline-block;
-  margin-bottom: 20px;
-  padding: 8px 20px;
-  @include font-size(14);
-  background-color: $black;
+  font-family: $base-font;
+  font-weight: 600;
+  font-size: 0.95rem;
   color: $white;
-  border: 2px solid $black !important;
-  border-radius: $border-radius;
-  &:visited {
+  background: $accent-color;
+  padding: 0.55em 1.1em;
+  border-radius: $border-radius-small;
+  border-bottom: none;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: $accent-color-dark;
     color: $white;
   }
-  &:hover {
-    background-color: $white;
-    color: $black;
-  }
-}
-
-/*
-   Close button
-   ========================================================================== */
-
-.close-btn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1;
-  background-color: transparent;
-  border: 0 solid transparent;
-  color: $white;
 }

@@ -1,40 +1,44 @@
-/* ==========================================================================
-   Search
-   ========================================================================== */
+.simple-search {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
 
-.search-wrapper {
-  @include outer-container;
-  margin-top: 0;
-  padding-right: $gutter;
-  padding-left: $gutter;
-  height: 1px;
-}
+  label { display: none; }
 
-/* 
-   Google search form
-   ========================================================================== */
+  input[type="search"] {
+    flex: 1;
+    font-family: $base-font;
+    font-size: 1rem;
+    padding: 0.65em 0.9em;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-small;
+    background: $white;
+    color: $text-color;
 
-#goog-fixurl {
-  ul {
-    list-style: none;
-    margin-left: 0;
-    padding-left: 0;
-    li {
-      list-style-type: none;
+    &:focus {
+      outline: none;
+      border-color: $accent-color;
     }
+  }
+
+  input[type="submit"] {
+    font-family: $base-font;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: $white;
+    background: $accent-color;
+    border: none;
+    padding: 0.65em 1.2em;
+    border-radius: $border-radius-small;
+    cursor: pointer;
+
+    &:hover { background: $accent-color-dark; }
   }
 }
 
-#goog-wm-qt {
-  width: auto;
-  margin-right: 10px;
-  padding: 8px 10px;
-  @include font-size(14);
-  border-width: 2px;
-  border-radius: $border-radius;
-}
-
-/* button */
-#goog-wm-sb {
-  @extend .btn;
+[data-search-found] {
+  font-size: 0.9rem;
+  color: $muted-color;
+  margin-bottom: 1rem;
+  font-weight: 400;
 }

@@ -1,0 +1,18 @@
+.wrap {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+#main {
+  padding: 2.5rem 0 4rem;
+}
+
+@media #{$medium} {
+  #main { padding: 3.5rem 0 5rem; }
+}
+
+.footer-wrapper {
+  border-top: 1px solid $border-color;
+  background: $cream-deep;
+}
