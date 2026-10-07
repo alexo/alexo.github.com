@@ -6,7 +6,7 @@ categories: articles
 excerpt: "Feature toggles and metrics vs. code review and architecture: where AI-first development wins, where it breaks, and what the engineer is for now."
 comments: true
 share: true
-date: 2026-10-07T12:00:00+03:00
+date: 2026-10-06T12:00:00+03:00
 tags: [ai, software-engineering, architecture, code-review]
 ---
 
