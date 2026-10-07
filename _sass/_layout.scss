@@ -1,18 +1,13 @@
-.wrap {
-  max-width: 46rem;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+#main { min-height: 60vh; }
+
+.page-header {
+  padding: 3.5rem 0 1.5rem;
+
+  .subtitle {
+    margin-top: 0.8rem;
+    font-size: 1.2rem;
+    color: var(--muted);
+  }
 }
 
-#main {
-  padding: 2.5rem 0 4rem;
-}
-
-@media #{$medium} {
-  #main { padding: 3.5rem 0 5rem; }
-}
-
-.footer-wrapper {
-  border-top: 1px solid $border-color;
-  background: $cream-deep;
-}
+.page-body { padding-bottom: 5rem; }

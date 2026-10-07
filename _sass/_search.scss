@@ -1,44 +1,33 @@
 .simple-search {
   display: flex;
   gap: 0.6rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 
-  label { display: none; }
+  label { position: absolute; left: -9999px; }
 
   input[type="search"] {
     flex: 1;
-    font-family: $base-font;
-    font-size: 1rem;
-    padding: 0.65em 0.9em;
-    border: 1px solid $border-color;
-    border-radius: $border-radius-small;
-    background: $white;
-    color: $text-color;
+    font: inherit;
+    padding: 0.8em 1.2em;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
 
-    &:focus {
-      outline: none;
-      border-color: $accent-color;
-    }
+    &:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
   }
 
   input[type="submit"] {
-    font-family: $base-font;
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: $white;
-    background: $accent-color;
+    font: inherit;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
     border: none;
-    padding: 0.65em 1.2em;
-    border-radius: $border-radius-small;
-    cursor: pointer;
+    padding: 0.8em 1.5em;
+    border-radius: 999px;
 
-    &:hover { background: $accent-color-dark; }
+    &:hover { background: var(--accent-strong); }
   }
 }
 
-[data-search-found] {
-  font-size: 0.9rem;
-  color: $muted-color;
-  margin-bottom: 1rem;
-  font-weight: 400;
-}
+.search-status { color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem; }

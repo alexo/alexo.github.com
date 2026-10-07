@@ -1,0 +1,9 @@
+{% assign p = include.post %}
+{% assign ex = p.excerpt | strip_html | strip_newlines | strip %}
+<a class="archive-item reveal" href="{{ site.url }}{{ p.url }}">
+  <time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%b %-d, %Y" }}</time>
+  <div>
+    <h3>{{ p.title }}</h3>
+    {% if ex != "" %}<p>{{ ex | truncate: 160 }}</p>{% endif %}
+  </div>
+</a>

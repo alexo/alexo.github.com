@@ -1,30 +1,37 @@
-.footer-wrapper .entry-wrapper {
-  padding: 2.2rem 1.5rem;
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+  padding: 2.6rem 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.footer-inner {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  font-size: 0.85rem;
-  color: $muted-color;
+  gap: 1.2rem;
 
-  a { border-bottom: none; }
+  a:hover { color: var(--accent); }
 }
 
 .social-icons {
   display: flex;
-  align-items: center;
-  gap: 0.9rem;
+  gap: 0.5rem;
 
   a {
-    color: $taupe;
-    display: inline-flex;
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    color: var(--text);
+    transition: all 0.15s ease;
 
-    &:hover { color: $accent-color; }
+    &:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
   }
 
-  svg {
-    width: 20px;
-    height: 20px;
-  }
+  svg { width: 1.05rem; height: 1.05rem; fill: currentColor; }
 }

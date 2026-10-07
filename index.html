@@ -1,12 +1,30 @@
 ---
-layout: page
-title: Latest Posts
-excerpt: "A simple and clean responsive Jekyll theme for words and photos."
-search_omit: true
+layout: default
+title: Home
 ---
+<section class="hero">
+  <div class="container hero-inner">
+    <div>
+      <span class="eyebrow">Principal Software Engineer &middot; Cluj-Napoca</span>
+      <h1>Software that <em>lasts</em>, and the decisions behind it.</h1>
+      <p class="hero-lead">I build large-scale backend systems in Java, Kafka and Go, and write about what outlives the code: design choices, ownership, and what actually breaks in production.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#latest">Read the latest &darr;</a>
+        <a class="btn btn-ghost" href="{{ site.url }}/about/">About me</a>
+      </div>
+    </div>
+    <div class="hero-avatar"><img src="{{ site.owner.avatar }}" alt="{{ site.owner.name }}" width="240" height="240"></div>
+  </div>
+</section>
 
-<ul class="post-list">
-{% for post in site.posts limit:10 %} 
-  <li><article><a href="{{ site.url }}{{ post.url }}">{{ post.title }} <span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></span>{% if post.excerpt %} <span class="excerpt">{{ post.excerpt }}</span>{% endif %}</a></article></li>
-{% endfor %}
-</ul>
+<section class="container" id="latest">
+  <div class="section-head">
+    <h2>Latest writing</h2>
+    <a href="{{ site.url }}/blog/">All posts &rarr;</a>
+  </div>
+  <div class="card-grid">
+    {% for post in site.posts limit:7 %}
+      {% include post-card.html post=post featured=forloop.first %}
+    {% endfor %}
+  </div>
+</section>

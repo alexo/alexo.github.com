@@ -1,19 +1,13 @@
-// Warm, muted syntax theme for Rouge
 .highlight {
-  background: #332a22;
-  color: #f1e6d6;
-
-  .c, .c1, .cm { color: #a6957f; font-style: italic; } // comments
-  .err { color: #f1e6d6; }
-  .k, .kd, .kn, .kp, .kr, .kt { color: #e39a62; } // keywords
-  .o { color: #e39a62; }
-  .s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sx, .sr, .ss { color: #b7c98d; } // strings
-  .m, .mf, .mh, .mi, .mo { color: #d98b7a; } // numbers
-  .n, .nx { color: #f1e6d6; }
-  .na, .nb, .bp { color: #e8c58a; }
-  .nc, .nn { color: #e8c58a; } // class/namespace
-  .nf { color: #e8c58a; } // function
-  .nt { color: #e39a62; } // tag
+  .c, .c1, .cm, .cs, .cp { color: #a6957f; font-style: italic; }
+  .k, .kd, .kn, .kp, .kr, .kt, .kc { color: #e39a62; }
+  .o, .ow { color: #e39a62; }
+  .s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sx, .sr, .ss { color: #b7c98d; }
+  .m, .mf, .mh, .mi, .mo, .il { color: #e8998a; }
+  .na, .nb, .bp, .nc, .nn, .nf, .nd, .ne { color: #e8c58a; }
+  .nt { color: #e39a62; }
+  .nv, .vi, .vg { color: #9fc4d6; }
   .p { color: #d8c9b5; }
-  .w { color: #f1e6d6; }
+  .gd { color: #e8998a; }
+  .gi { color: #b7c98d; }
 }

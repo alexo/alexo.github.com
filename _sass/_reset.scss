@@ -1,21 +1,7 @@
 *, *::before, *::after { box-sizing: border-box; }
-
 html { -webkit-text-size-adjust: 100%; }
-
-body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd {
-  margin: 0;
-}
-
-ul, ol {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-  height: auto;
-}
-
-a { color: inherit; }
+body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+img, svg { max-width: 100%; display: block; }
+img { height: auto; }
+button { font: inherit; color: inherit; cursor: pointer; }

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+{% include head.html %}
+</head>
+<body class="layout-{{ page.layout }}" data-base-url="{{ site.url }}">
+<div class="progress" id="progress"></div>
+{% include header.html %}
+<main id="main" role="main">
+{{ content }}
+</main>
+{% include footer.html %}
+{% include scripts.html %}
+</body>
+</html>

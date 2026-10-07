@@ -1,26 +1,22 @@
 ---
 layout: page
-title: Tag Index
-excerpt: "An archive of posts sorted by tag."
+title: Tags
+subtitle: Posts grouped by topic.
 search_omit: true
 ---
 
-{% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
-{% assign tags_list = site_tags | split:',' | sort %}
+{% assign sorted_tags = site.tags | sort %}
+<div class="tag-cloud">
+{% for t in sorted_tags %}{% unless t[0] == 'sample-post' %}
+  <a class="pill" href="#{{ t[0] }}">{{ t[0] }} <span>{{ t[1].size }}</span></a>
+{% endunless %}{% endfor %}
+</div>
 
-<ul class="tag-box inline">
-  {% for item in (0..site.tags.size) %}{% unless forloop.last %}
-    {% capture this_word %}{{ tags_list[item] | strip_newlines }}{% endcapture %}
-    <li><a href="#{{ this_word }}">{{ this_word }} <span>{{ site.tags[this_word].size }}</span></a></li>
-  {% endunless %}{% endfor %}
-</ul>
-
-{% for item in (0..site.tags.size) %}{% unless forloop.last %}
-  {% capture this_word %}{{ tags_list[item] | strip_newlines }}{% endcapture %}
-  <h2 id="{{ this_word }}">{{ this_word }}</h2>
-  <ul class="post-list">
-  {% for post in site.tags[this_word] %}{% if post.title != null %}
-    <li><a href="{{ site.url }}{{ post.url }}">{{ post.title }}<span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></span></a></li>
-  {% endif %}{% endfor %}
-  </ul>
+{% for t in sorted_tags %}{% unless t[0] == 'sample-post' %}
+<h2 id="{{ t[0] }}">{{ t[0] }}</h2>
+<div class="archive">
+{% for post in t[1] %}
+  {% include archive-item.html post=post %}
+{% endfor %}
+</div>
 {% endunless %}{% endfor %}

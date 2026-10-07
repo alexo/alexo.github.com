@@ -1,91 +1,141 @@
+:root {
+  --bg: #fbf6ee;
+  --bg-glass: rgba(251, 246, 238, 0.82);
+  --surface: #ffffff;
+  --surface-2: #f3e9db;
+  --text: #2a221c;
+  --muted: #75685c;
+  --accent: #c1562c;
+  --accent-strong: #9e4323;
+  --accent-soft: rgba(193, 86, 44, 0.12);
+  --sage: #5f7a52;
+  --border: #e8dccb;
+  --shadow: rgba(60, 35, 15, 0.1);
+  --code-bg: #1d1814;
+}
+
+[data-theme="dark"] {
+  --bg: #17130f;
+  --bg-glass: rgba(23, 19, 15, 0.8);
+  --surface: #211b16;
+  --surface-2: #2a231c;
+  --text: #f1e8dc;
+  --muted: #a89a89;
+  --accent: #e8825a;
+  --accent-strong: #f29a76;
+  --accent-soft: rgba(232, 130, 90, 0.16);
+  --sage: #9bb58a;
+  --border: #382f26;
+  --shadow: rgba(0, 0, 0, 0.45);
+  --code-bg: #110e0b;
+}
+
 html {
-  background: $body-color;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  background: var(--bg);
 }
 
 body {
   font-family: $base-font;
-  color: $text-color;
-  background: $body-color;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background 0.25s ease, color 0.25s ease;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4 {
   font-family: $heading-font;
   font-weight: 600;
-  line-height: 1.25;
-  color: $text-color;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
-h1 { font-size: 2.1em; }
-h2 { font-size: 1.6em; margin-top: 1.6em; }
-h3 { font-size: 1.25em; margin-top: 1.4em; }
+h1 { font-size: clamp(2rem, 1.2rem + 3vw, 3.2rem); font-weight: 700; }
+h2 { font-size: clamp(1.45rem, 1.1rem + 1.2vw, 1.9rem); }
+h3 { font-size: 1.3rem; }
 
-p, ul, ol, dl, blockquote, table {
-  margin-bottom: 1.3em;
-}
+a { color: inherit; text-decoration: none; }
 
-a {
-  color: $link-color;
-  text-decoration: none;
-  border-bottom: 1px solid rgba($accent-color, 0.35);
-  transition: border-color 0.15s ease, color 0.15s ease;
+::selection { background: var(--accent-soft); }
 
-  &:hover {
-    color: $accent-color-dark;
-    border-bottom-color: $accent-color-dark;
-  }
-}
-
-code {
-  font-family: $code-font;
-  font-size: 0.88em;
-  background: $cream-deep;
-  padding: 0.15em 0.4em;
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
   border-radius: 4px;
 }
 
-pre {
-  overflow-x: auto;
-  padding: 1em 1.2em;
-  border-radius: $border-radius-small;
-  margin-bottom: 1.5em;
-
-  code {
-    background: none;
-    padding: 0;
-  }
-}
-
-blockquote {
-  margin-left: 0;
-  padding-left: 1.1em;
-  border-left: 3px solid $accent-color;
-  color: $muted-color;
-  font-style: italic;
-}
-
-hr {
-  border: none;
-  border-top: 1px solid $border-color;
-  margin: 2.2em 0;
-}
-
-table {
+.container {
   width: 100%;
-  border-collapse: collapse;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
 
-  th, td {
-    padding: 0.5em 0.8em;
-    border-bottom: 1px solid $border-color;
-    text-align: left;
+.narrow { max-width: 48rem; }
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: var(--accent);
+  z-index: 50;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.2em 0.75em;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+a.pill:hover { background: var(--accent); color: #fff; }
+.pill span { opacity: 0.7; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.7em 1.3em;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid var(--accent);
+  transition: transform 0.15s ease, background 0.15s ease;
+
+  &:hover { background: var(--accent-strong); transform: translateY(-1px); }
+
+  &.btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border-color: var(--border);
+
+    &:hover { border-color: var(--accent); color: var(--accent); }
   }
 }
 
-.footnotes {
-  margin-top: 2.5em;
-  padding-top: 1.2em;
-  border-top: 1px solid $border-color;
-  font-size: 0.9em;
-  color: $muted-color;
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+
+  &.in { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
 }

@@ -1,35 +1,97 @@
-.navigation-wrapper {
-  background: rgba($cream, 0.92);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid $border-color;
+.site-header {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 40;
+  background: var(--bg-glass);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  backdrop-filter: saturate(160%) blur(12px);
+  border-bottom: 1px solid var(--border);
 }
 
-#site-nav {
-  max-width: 46rem;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 4rem;
+}
 
-  ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.4rem;
-    padding: 0.85rem 0;
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: $heading-font;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-right: auto;
+
+  .brand-mark {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 1rem;
   }
+}
+
+.site-nav {
+  display: none;
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  padding: 0.5rem 1.5rem 1.2rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+
+  .nav-open & { display: block; }
+
+  ul { display: flex; flex-direction: column; gap: 0.2rem; }
 
   a {
-    font-family: $base-font;
+    display: block;
+    padding: 0.6rem 0.2rem;
     font-weight: 500;
-    font-size: 0.95rem;
-    color: $taupe;
-    border-bottom: 2px solid transparent;
-    padding-bottom: 2px;
+    color: var(--muted);
 
-    &:hover {
-      color: $accent-color;
-      border-bottom-color: $accent-color;
-    }
+    &:hover, &[aria-current="page"] { color: var(--accent); }
+  }
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  transition: border-color 0.15s ease, color 0.15s ease;
+
+  &:hover { border-color: var(--accent); color: var(--accent); }
+  svg { width: 1.15rem; height: 1.15rem; }
+}
+
+.theme-toggle .icon-sun { display: none; }
+[data-theme="dark"] .theme-toggle {
+  .icon-sun { display: block; }
+  .icon-moon { display: none; }
+}
+
+@media #{$medium} {
+  .nav-toggle { display: none; }
+
+  .site-nav {
+    display: block;
+    position: static;
+    padding: 0;
+    background: none;
+    border: none;
+
+    ul { flex-direction: row; gap: 1.6rem; }
+    a { padding: 0.3rem 0; font-size: 0.98rem; }
   }
 }

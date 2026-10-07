@@ -35,7 +35,7 @@ exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.
 # Site owner
 owner:
   name: Alex Objelean
-  avatar: http://1.gravatar.com/avatar/909892a9a8f332145fc01b6547cd3a3a?size=200px
+  avatar: https://www.gravatar.com/avatar/909892a9a8f332145fc01b6547cd3a3a?s=400
   email: alex.objelean@gmail.com
   disqus-shortname: alexogithubio
   twitter: alexobjelean
