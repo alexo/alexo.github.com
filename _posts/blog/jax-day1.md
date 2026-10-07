@@ -3,12 +3,12 @@ layout: post
 title: "JAX London 2015 - Day1"
 modified:
 categories: blog
-excerpt:
-tags : [jax, conference]
 comments: true
 image:
   feature:
-date: 2013-10-13T00:00:00-00:00
+date: 2015-10-13T00:00:00+01:00
+excerpt: "Notes from day one of JAX London 2015: Java 8 streams and generics, architecture, and distributed systems in one lesson."
+tags: [conferences, java]
 ---
 
 # From Design Thinking to DevOps and Back Again: Unifying Design and Operations

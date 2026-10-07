@@ -2,7 +2,8 @@
 sitemap: false
 ---
 [
-{% for post in site.posts %}{% unless forloop.first %},{% endunless %}{
+{% assign visible = site.posts | where_exp: "p", "p.hidden != true" %}
+{% for post in visible %}{% unless forloop.first %},{% endunless %}{
   "title": {{ post.title | jsonify }},
   "link": {{ post.url | prepend: site.url | jsonify }},
   "excerpt": {{ post.excerpt | strip_html | strip_newlines | truncate: 220 | jsonify }}

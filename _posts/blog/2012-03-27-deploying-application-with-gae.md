@@ -4,11 +4,11 @@ title: "Deploying application with GAE"
 modified:
 categories: blog
 excerpt: "How to deploy an application on Google App Engine (GAE)"
-tags : [tutorial, appengine, deploy]
 comments: true
 image:
   feature:
 date: 2012-03-27T15:39:55-04:00
+tags: [devops, appengine]
 ---
 
 

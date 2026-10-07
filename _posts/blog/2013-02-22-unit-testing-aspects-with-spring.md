@@ -4,11 +4,11 @@ title: "Unit testing aspects with spring"
 modified:
 categories: blog
 excerpt: "How to unit test aspects with spring"
-tags : [test, spring, java]
 comments: true
 image:
   feature:
 date: 2013-02-22T15:39:55-04:00
+tags: [testing, spring, java]
 ---
 
 

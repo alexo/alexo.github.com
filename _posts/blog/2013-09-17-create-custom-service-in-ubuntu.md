@@ -4,11 +4,11 @@ title: "Create Custom Service in Ubuntu"
 modified:
 categories: blog
 excerpt: "How to create a customer service in Ubuntu"
-tags : [linux, tips]
 comments: true
 image:
   feature:
-date: 2013-06-17T15:39:55-04:00
+date: 2013-09-17T15:39:55-04:00
+tags: [devops, linux]
 ---
 
 When developing software application on linux, instead of creating custom scripts it could be easier to invoke them as a service.

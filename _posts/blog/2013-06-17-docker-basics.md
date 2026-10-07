@@ -4,10 +4,10 @@ title: "Docker basics"
 excerpt: Most useful Docker commands
 modified:
 categories: blog
-tags : [docker]
 image:
   feature:
 date: 2013-06-17T15:39:55-04:00
+tags: [devops]
 ---
 
 Docker is an open-source engine which automates the deployment of applications as highly portable, self-sufficient containers which are independent of hardware, language, framework, packaging system and hosting provider.

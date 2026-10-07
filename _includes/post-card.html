@@ -5,5 +5,5 @@
   <div class="card-meta"><time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%b %-d, %Y" }}</time><span>&middot;</span><span>{{ mins }} min read</span></div>
   <h3 class="card-title"><a class="card-link" href="{{ site.url }}{{ p.url }}">{{ p.title }}</a></h3>
   {% if ex != "" %}<p class="card-excerpt">{{ ex | truncate: 170 }}</p>{% endif %}
-  <div class="card-tags">{% for tag in p.tags limit:3 %}{% unless tag == 'sample-post' %}<span class="pill">{{ tag }}</span>{% endunless %}{% endfor %}</div>
+  <div class="card-tags">{% for tag in p.tags limit:3 %}<span class="pill">{{ tag }}</span>{% endfor %}</div>
 </article>

@@ -1,17 +1,22 @@
 ---
 layout: post
 title: Introducere in Couchbase - solutie NoSQL bazata pe Documente
-excerpt: ""
 modified: 2015-09-25
 categories: articles
-tags: [sample-post]
 image:
   feature: so-simple-sample-image-1.jpg
   credit: WeGraphics
   creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 comments: false
 share: false
+date: 2015-09-25T12:00:00+03:00
+excerpt: "Versiunea in limba romana a articolului despre Couchbase, publicat in Today Software Magazine."
+tags: [couchbase, nosql]
+lang: ro
+hidden: true
 ---
+
+*Also available in English: [Introduction to Couchbase]({% post_url articles/2015-09-25-Introduction_to_couchbase_no_sql_document_database %}).*
 
 # Introducere in Couchbase - solutie NoSQL bazata pe Documente 
 

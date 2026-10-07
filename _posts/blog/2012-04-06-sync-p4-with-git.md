@@ -5,10 +5,10 @@ modified:
 categories: blog
 excerpt: "How to sync perforce with git"
 comments: true
-tags : [lesson]
 image:
   feature:
 date: 2012-04-06T15:39:55-04:00
+tags: [git]
 ---
 
 If you want to automate p4 to git synchronization, you can use a script which performs all the hard work for you. The idea behind it is simple:

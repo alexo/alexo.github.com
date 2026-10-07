@@ -3,12 +3,12 @@ layout: post
 title: "JAX London 2015 - Day2"
 modified:
 categories: blog
-excerpt:
-tags : [jax, conference]
 comments: true
 image:
   feature:
-date: 2013-10-14T00:00:00-00:00
+date: 2015-10-14T00:00:00+01:00
+excerpt: "Notes from day two of JAX London 2015: scalable enterprise architecture, innovation diffusion, A/B testing and Java 8 best practices."
+tags: [conferences, java]
 ---
 
 

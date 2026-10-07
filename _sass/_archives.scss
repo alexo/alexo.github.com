@@ -49,7 +49,7 @@
   padding: 2.2rem;
   background: linear-gradient(135deg, var(--surface) 0%, var(--accent-soft) 160%);
 
-  .card-title { font-size: clamp(1.7rem, 1.2rem + 1.6vw, 2.3rem); }
+  .card-title { font-size: clamp(1.7rem, calc(1.2rem + 1.6vw), 2.3rem); }
   .card-excerpt { font-size: 1.1rem; max-width: 42rem; }
 }
 

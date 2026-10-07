@@ -23,7 +23,8 @@ title: Home
     <a href="{{ site.url }}/blog/">All posts &rarr;</a>
   </div>
   <div class="card-grid">
-    {% for post in site.posts limit:7 %}
+    {% assign visible = site.posts | where_exp: "p", "p.hidden != true" %}
+    {% for post in visible limit:7 %}
       {% include post-card.html post=post featured=forloop.first %}
     {% endfor %}
   </div>

@@ -1,17 +1,20 @@
 ---
 layout: post
 title: Introduction to Couchbase - NoSQL Document Database
-excerpt: ""
 modified: 2015-09-25
 categories: articles
-tags: [sample-post]
 image:
   feature: so-simple-sample-image-1.jpg
   credit: WeGraphics
   creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 comments: true
 share: true
+date: 2015-09-25T12:00:00+03:00
+excerpt: "A practical introduction to Couchbase: why NoSQL, the document model, vBuckets, architecture, querying, performance and monitoring."
+tags: [couchbase, nosql]
 ---
+
+*Also available in Romanian: [Introducere in Couchbase]({% post_url articles/2015-09-25-Introduction_to_couchbase_no_sql_document_database_ro %}).*
 
 # Introduction to Couchbase - NoSQL Document Database 
 

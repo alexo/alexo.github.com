@@ -4,11 +4,11 @@ title: "Testing concurrent code execution"
 modified:
 categories: blog
 excerpt: "How to easily test concurrent code execution with java 8"
-tags : [test, java]
 comments: true
 image:
   feature:
 date: 2016-09-21T17:00:00-04:00
+tags: [testing, java]
 ---
 
 Running good tests is hard. Running tests which test various scenarios in concurrent environment is even harder. 

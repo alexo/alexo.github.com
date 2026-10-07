@@ -4,7 +4,7 @@ layout: default
 {% assign mins = content | number_of_words | divided_by: 200 | plus: 1 %}
 <article class="post">
   <header class="post-header container narrow">
-    <div class="card-tags">{% for tag in page.tags %}{% unless tag == 'sample-post' %}<a class="pill pill-link" href="{{ site.url }}/tags/#{{ tag }}">{{ tag }}</a>{% endunless %}{% endfor %}</div>
+    <div class="card-tags">{% for tag in page.tags %}<a class="pill pill-link" href="{{ site.url }}/tags/#{{ tag }}">{{ tag }}</a>{% endfor %}</div>
     <h1>{{ page.headline | default: page.title }}</h1>
     <div class="post-meta">
       <span class="author"><img src="{{ site.owner.avatar }}" alt="" width="38" height="38">{{ site.owner.name }}</span>
@@ -30,10 +30,10 @@ layout: default
   </div>
 
   <nav class="container narrow post-nav" aria-label="More posts">
-    {% if page.previous %}
+    {% if page.previous and page.previous.hidden != true %}
     <article class="card prev"><small>Previous</small><strong><a class="card-link" href="{{ site.url }}{{ page.previous.url }}">{{ page.previous.title }}</a></strong></article>
     {% endif %}
-    {% if page.next %}
+    {% if page.next and page.next.hidden != true %}
     <article class="card next"><small>Next</small><strong><a class="card-link" href="{{ site.url }}{{ page.next.url }}">{{ page.next.title }}</a></strong></article>
     {% endif %}
   </nav>
