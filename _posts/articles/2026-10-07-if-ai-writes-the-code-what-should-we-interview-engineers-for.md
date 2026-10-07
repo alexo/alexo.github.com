@@ -6,7 +6,7 @@ categories: articles
 excerpt: "AI didn't make technical interviews obsolete. It exposed what they were actually measuring. A thought experiment on how I'd interview engineers now."
 comments: true
 share: true
-date: 2026-10-07T18:00:00+03:00
+date: 2026-10-07T15:00:00+03:00
 tags: [ai, software-engineering, interviews, hiring]
 ---
 
