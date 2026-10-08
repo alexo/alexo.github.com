@@ -48,7 +48,7 @@ og_image: my-card.png             # optional, in images/ (1200x630)
 
 ## Analytics
 
-Page views are counted by GoatCounter (no cookies): <https://alexobjelean.goatcounter.com>.
+Page views are counted by GoatCounter (no cookies): <https://alexoblog.goatcounter.com>.
 The script loads only in production, so local previews are not counted.
 
 ## Deploying
