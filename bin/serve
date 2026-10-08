@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Preview the blog locally at http://localhost:4000 (Ctrl+C to stop).
+# Needs Docker. Uses a named volume so gems are only installed once.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+args=(--rm -it --init -p 4000:4000 -w /srv/jekyll
+      -v "$PWD":/srv/jekyll -v jekyll-bundle3:/usr/local/bundle)
+
+# Behind a TLS-inspecting proxy (e.g. Zscaler), the container needs the proxy's
+# root certificate to reach rubygems.org. See README.
+CA="${BLOG_CA_CERT:-$HOME/zscaler-ca.pem}"
+if [ -f "$CA" ]; then
+  args+=(-v "$CA":/roots.pem:ro -e SSL_CERT_FILE=/roots.pem)
+fi
+
+exec docker run "${args[@]}" ruby:3.2 \
+  sh -c "bundle install && exec bundle exec jekyll serve --livereload --host 0.0.0.0"
