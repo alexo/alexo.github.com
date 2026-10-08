@@ -175,3 +175,39 @@
 
 .footnotes { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--border); font-size: 0.9rem; color: var(--muted); }
 #disqus_thread { margin-top: 3rem; }
+
+.entry-content blockquote.pullquote {
+  margin: 2.4em 0;
+  padding: 1.2em 0;
+  background: none;
+  border: none;
+  border-top: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  border-radius: 0;
+  font-family: $heading-font;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: var(--text);
+  text-align: center;
+
+  p { margin: 0; }
+}
+
+@media #{$medium} {
+  .entry-content blockquote.pullquote { font-size: 1.85rem; }
+}
+
+.entry-content figure.diagram {
+  margin: 2.2em 0;
+  text-align: center;
+
+  svg { margin: 0 auto; max-width: 100%; height: auto; }
+
+  figcaption {
+    margin-top: 0.7rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+}
