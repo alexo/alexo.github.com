@@ -8,6 +8,7 @@ comments: true
 share: true
 date: 2026-10-07T15:00:00+03:00
 tags: [ai, software-engineering, interviews, hiring]
+og_image: og-interview-engineers.png
 ---
 
 A comment on my last essay, *[AI Can Write the Code. Someone Still Has to Own the Decision]({% post_url articles/2026-10-07-ai-can-write-the-code-someone-still-has-to-own-the-decision %})*, asked a question I couldn't stop thinking about: if AI can write the code and the engineer's job is now owning the decision, what happens to technical interviews?
@@ -21,6 +22,9 @@ For years my interviews followed the same shape: an hour and a list of subjects 
 Going back through my notes wasn't a flattering read. Most of them are checklists of concepts recalled: streams, lambdas, the difference between two interfaces that do almost the same thing, checked versus unchecked exceptions. The plans almost always included a design question or a small exercise. The notes almost never record one being run. With an hour on the clock, the interview kept drifting back to what's fastest to ask and easiest to score, which is recall. And the feedback I wrote afterwards, in a hurry, was honestly closer to a feeling than to an examination.
 
 What I find more interesting is what my decisions rewarded, as opposed to what my questions asked. The candidates I recommended hiring weren't the ones with the cleanest recall. Both had gaps in the language fundamentals I'd spent half the hour on. What carried them was that they could walk through a real system they'd built, end to end, explain why it was shaped that way, and they thought about edge cases before I asked. One of my own feedback notes says it in three words: practical over theoretical. The verdicts I hedged on came down to recall gaps.
+
+> So even before AI, my format measured one thing and my judgment rewarded another.
+{: .pullquote}
 
 So even before AI, my format measured one thing and my judgment rewarded another. AI widens that gap, but it didn't create it. I don't think it made technical interviews obsolete either. It exposed what they were actually measuring.
 
@@ -38,9 +42,37 @@ I don't think fundamentals matter less. They're what judgment is built on. You c
 
 ## The interview I'd run now
 
+> I'm trying to find out whether they can take responsibility for the output of an AI-assisted process, which means understanding it, questioning it, checking it and standing behind the result.
+{: .pullquote}
+
 Interviews where candidates work with AI, or review its output, aren't a new idea, and some teams already run them. The exercise matters less than what it's meant to establish. I'm not trying to find out whether someone can beat the AI, or even whether they can find a bug. I'm trying to find out whether they can take responsibility for the output of an AI-assisted process, which means understanding it, questioning it, checking it and standing behind the result. My last essay argued that the question decides the answer, and that holds for interviewers too. The biggest decision is no longer which coding problem to give, but which question will produce evidence of the judgment the job actually requires.
 
 I'd keep the hour. It isn't enough, but it's the constraint most of us actually have, and a format that routinely needs three hours won't survive contact with scheduling. Here's the structure I'd try.
+
+<figure class="diagram">
+<svg viewBox="0 0 560 150" role="img" aria-label="The sixty minute interview split into six blocks: 5 minutes introduction, 15 on a real project, 20 reviewing an AI-written pull request, 12 on design, 5 on AI use, 3 for questions." xmlns="http://www.w3.org/2000/svg" font-family="inherit">
+<text x="20" y="24" font-size="13" font-weight="700" fill="currentColor" opacity="0.7">THE HOUR, IN MINUTES</text>
+<rect x="20.0" y="40" width="43.3" height="52" fill="#e8dccb" stroke="var(--bg)" stroke-width="3"/>
+<rect x="63.3" y="40" width="130.0" height="52" fill="#c1562c" stroke="var(--bg)" stroke-width="3"/>
+<rect x="193.3" y="40" width="173.3" height="52" fill="#9e4323" stroke="var(--bg)" stroke-width="3"/>
+<rect x="366.7" y="40" width="104.0" height="52" fill="#c1562c" stroke="var(--bg)" stroke-width="3"/>
+<rect x="470.7" y="40" width="43.3" height="52" fill="#e8dccb" stroke="var(--bg)" stroke-width="3"/>
+<rect x="514.0" y="40" width="26.0" height="52" fill="#e8dccb" stroke="var(--bg)" stroke-width="3"/>
+<text x="41.7" y="72" fill="#2a221c" font-weight="700" font-size="16" text-anchor="middle">5</text>
+<text x="128.3" y="72" fill="#fff" font-weight="700" font-size="16" text-anchor="middle">15</text>
+<text x="280.0" y="72" fill="#fff" font-weight="700" font-size="16" text-anchor="middle">20</text>
+<text x="418.7" y="72" fill="#fff" font-weight="700" font-size="16" text-anchor="middle">12</text>
+<text x="492.3" y="72" fill="#2a221c" font-weight="700" font-size="16" text-anchor="middle">5</text>
+<text x="527.0" y="72" fill="#2a221c" font-weight="700" font-size="16" text-anchor="middle">3</text>
+<text x="41.7" y="112" font-size="12" text-anchor="middle" fill="currentColor" opacity="0.8">Intro</text>
+<text x="128.3" y="130" font-size="12" text-anchor="middle" fill="currentColor" opacity="0.8">Real project</text>
+<text x="280.0" y="112" font-size="12" text-anchor="middle" fill="currentColor" opacity="0.8">Review an AI-written PR</text>
+<text x="418.7" y="130" font-size="12" text-anchor="middle" fill="currentColor" opacity="0.8">Design + toggle</text>
+<text x="492.3" y="112" font-size="12" text-anchor="middle" fill="currentColor" opacity="0.8">AI use</text>
+<text x="527.0" y="130" font-size="12" text-anchor="middle" fill="currentColor" opacity="0.8">Q&amp;A</text>
+</svg>
+<figcaption>Where the sixty minutes go. Over half is spent on ownership and investigation, not recall.</figcaption>
+</figure>
 
 **Five minutes of introduction.**
 
@@ -68,6 +100,9 @@ The hour still forces quick feedback, so I'd give the feeling some structure. Fo
 4. **Calibrated trust in AI:** do they know when to doubt it? *Weak: pastes its output without reading it. Strong: questions the assistant on edge cases and checks its answers against the language and framework rules.*
 
 The verdict gets written within ten minutes, from the evidence lines rather than from memory. I'd rather have structured judgment than a number pretending to be a measurement. It's still fast, but it's no longer just a feeling.
+
+> AI-generated prep deserves the same review as an AI-generated PR.
+{: .pullquote}
 
 The same lesson applies to the interviewer. I used an assistant to turn CVs into profiles and interview plans, and my terse notes into written feedback. It was useful, and it caught gaps, like a planned question I'd never asked. It also inflated CVs, describing one candidate as a multi-stack architect when my notes showed they couldn't name a basic resilience pattern, and added feedback details my notes didn't contain. AI-generated prep deserves the same review as an AI-generated PR. That's the whole point of this essay, turned on the interviewer.
 
