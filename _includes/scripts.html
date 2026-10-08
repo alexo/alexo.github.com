@@ -1,2 +1,5 @@
 <script src="{{ site.url }}/assets/js/main.js" defer></script>
 {% if page.search_page %}<script src="{{ site.url }}/assets/js/search.js" defer></script>{% endif %}
+{% if jekyll.environment == "production" %}
+<script data-goatcounter="https://alexobjelean.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+{% endif %}

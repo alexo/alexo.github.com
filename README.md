@@ -46,6 +46,11 @@ og_image: my-card.png             # optional, in images/ (1200x630)
 - Diagram: an inline `<svg>` inside `<figure class="diagram">` with a `<figcaption>`.
 - Hide a post from lists and search but keep its URL: `hidden: true`.
 
+## Analytics
+
+Page views are counted by GoatCounter (no cookies): <https://alexobjelean.goatcounter.com>.
+The script loads only in production, so local previews are not counted.
+
 ## Deploying
 
 Push to `master`; GitHub Pages builds and publishes. Check the Actions tab if a build fails.
